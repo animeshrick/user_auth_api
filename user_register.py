@@ -66,6 +66,8 @@ def validate_password(password):
 
     else:
         return 'True'
+    
+    
 
 
 # --------- user registration api ---------

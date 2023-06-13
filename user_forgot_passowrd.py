@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
 from datetime import datetime
-from flask_mail import Mail, Message
+# from flask_mail import Mail, Message
+from email.mime.text import MIMEText
 
 
 
@@ -22,13 +23,13 @@ collection = db[user_collection_name]
 
 
 # Email config 
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = 'animeshbanerjeeshbl@gmail.com'
+# app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+# app.config['MAIL_PORT'] = 465
+# app.config['MAIL_USE_SSL'] = True
+# app.config['MAIL_USERNAME'] = 'animeshbanerjeeshbl@gmail.com'
 # app.config['MAIL_PASSWORD'] = '@Nimeshece1998'
 
-mail = Mail(app)
+# mail = Mail(app)
 
 
 @app.route('/api/v1/forgotpassword' , methods=['POST'])
@@ -50,12 +51,26 @@ def forgotpassword():
         user_password_from_db =  user_data['password']
         
         # decrypted_password = cipher_suite.decrypt(user_password_from_db.encode()).decode()
-
+        
+        email = MIMEText(message)
+        email['Subject'] = 'subject test'
+        email['From'] = "animeshece1998@gmail.com"
+        email['To'] = user_email
+        smtp_port = ''
+        smtp_server = ''
         
         # Send the decrypted password to the user's email
-        message = Message('Decrypted Password', sender=app.config['MAIL_USERNAME'], recipients=[user_email_from_db])
-        message.body = "Your decrypted password is: {decrypted_password}"
-        mail.send(message)
+        # message = Message('Decrypted Password', sender=app.config['MAIL_USERNAME'], recipients=[user_email_from_db])
+        # message.body = "Your decrypted password is: {decrypted_password}"
+        # mail.send(message)
+        
+        # Connect to the SMTP server
+        with smtplib.SMTP(smtp_server, smtp_port) as smtp:
+        # Authenticate if necessary
+        # smtp.login('your-username', 'your-password')
+
+        # Send the email
+            smtp.send_message(email)
         
         return jsonify({"message": f"Password has been sent to your registered email-id ({user_email})"})
 

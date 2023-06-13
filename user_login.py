@@ -33,6 +33,9 @@ def login():
 
     # Retrieve the user from the database based on the phone
     user_on_phone = users_collection.find_one({'phone': email_phone})
+    
+    print('user_on_email = ', user_on_email)
+    print('user_on_phone = ', user_on_phone)
 
     if user_on_email and check_password_hash(user_on_email['password'], password):
 
