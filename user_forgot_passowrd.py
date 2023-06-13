@@ -25,8 +25,8 @@ collection = db[user_collection_name]
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = 'animeshece1998@gmail.com'
-# app.config['MAIL_PASSWORD'] = 'A@Nimeshece1998'
+app.config['MAIL_USERNAME'] = 'animeshbanerjeeshbl@gmail.com'
+# app.config['MAIL_PASSWORD'] = '@Nimeshece1998'
 
 mail = Mail(app)
 
