@@ -1,6 +1,6 @@
 # user_auth_api
 
-# Register API :
+# Register API :\n
 URL : http://127.0.0.1:2023/api/v1/register
 Method: POST
 Params (Body): f_name : Test | l_name : test | email : test@gmail.com | phone : 1231231231 | password : @A123456
